@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="config/db.properties">
+    </properties>
+    <typeAliases >
+        <!--<typeAlias type="cn.itcast.mybatis.po.User" alias="User"></typeAlias>--><!--单个别名-->
+        <package name="cn.itcast.mybatis.po"></package><!--包内别名，自动和类名一致，首字母大小写都可以-->
+    </typeAliases>
+    <!-- 对事务的管理和连接池的配置 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- mapping 文件路径配置 -->
+    <mappers>
+        <!--一次加载一个配置文件-->
+        <mapper resource="config/sqlmap/User.xml" />
+        <!--<mapper resource="config/sqlmap/UserMapper.xml" />-->
+
+
+        <!--mapper接口名和映射文件名保持一致，并在一个目录中，前提时使用mapper代理的方法-->
+       <!-- <mapper class="cn.itcast.mybatis.mapper.UserMapper"/>-->
+
+
+
+        <!--批量加载mapper
+        指定mapper接口的包名，mybatis自动扫描包下所有mapper进行加载
+        接口名和映射文件名保持一致，并在一个目录中，前提时使用mapper代理的方法
+        -->
+        <package name="cn.itcast.mybatis.mapper"/>
+    </mappers>
+</configuration>

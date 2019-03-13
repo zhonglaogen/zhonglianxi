@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!--namespace命名空间，作用就是对sql进行分类化的管理，理解sql隔离
+注意：使用mapper代理方法开发，namespace就有特殊作用
+-->
+<mapper namespace="cn.itcast.mybatis.mapper.UserMapper">
+    <!--配置很多SQL语句
+    id是statement的id
+    -->
+    <sql id="query_user_where">
+        <if test="ids!=null">
+            <!--使用foreach遍历传入ids
+            collection:指定传入的对象中的集合属性
+            item：每个遍历生成的对象名
+            open:开始遍历时拼接的串
+            close：结束遍历时拼接的串
+            separator：遍历的两个对象中间所需要拼接的串
+            -->
+           <!-- <foreach collection="ids" item="user_id" open="and (" close=")" separator="or">
+                id=#{user_id}
+            </foreach>-->
+            <foreach collection="ids" item="user_id" open="and id in (" close=")" separator=",">
+                #{user_id}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="FindUserById" parameterType="int" resultType="cn.itcast.mybatis.po.User" >
+        SELECT * FROM  user WHERE  id=#{id}
+    </select>
+    <!--模糊查询返回多条记录
+    ${}:表示拼接字符串，将接收到的参数内容不加任何修饰拼接到sql中
+    使用${}拼接sql可能会引起sql注入
+    ${}：接收输入参数的内容，如果传人的是简单类型，${}只能用value
+    -->
+    <select id="FindUserByName" parameterType="String" resultType="cn.itcast.mybatis.po.User" >
+        SELECT * FROM  user WHERE  name like '%${value}%'
+    </select>
+    <select id="FindUserList" parameterType="UserQueryVo" resultType="cn.itcast.mybatis.po.User" >
+        SELECT * FROM  user
+        <where>
+            <include refid="query_user_where"></include>
+        </where>
+    </select>
+
+    <insert id="insertUser" parameterType="cn.itcast.mybatis.po.User">
+        <!--<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()自增主键的返回
+        </selectKey>-->
+        INSERT into user(name,age,sex) VALUE (#{name},#{age},#{sex})
+        <!--使用mysql的uuid（）生成主键，非递增的          注：使用前需要将id设置为String，长度为35
+        执行过程：
+        通过uuid得到主键，将主键设置到user对象的id属性中
+        其次在insert执行时，从user对象中取出id的值
+
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            SELECT uuid()自增主键的返回
+        </selectKey>
+        INSERT into user(id,name,age,sex) VALUE (#{id},#{name},#{age},#{sex})-->
+    </insert>
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE FROM  USER where id=#{id}
+    </delete>
+</mapper>
