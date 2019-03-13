@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--全局setting根据需要配置-->
+
+
+    <typeAliases>
+        <!--批量扫描别名-->
+        <package name="cn.zlx.ssm.po"></package>
+    </typeAliases>
+
+
+    <!--使用Spring和mybatis的扫描不需要配置mpper了，遵循规则，mapper和java同名-->
+</configuration>

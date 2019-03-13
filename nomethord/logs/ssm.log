@@ -1,0 +1,16 @@
+[DEBUG] [2019-02-09 19:29:12][org.springframework.core.env.StandardEnvironment]Adding [systemProperties] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:12][org.springframework.core.env.StandardEnvironment]Adding [systemEnvironment] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:12][org.springframework.core.env.StandardEnvironment]Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+[INFO] [2019-02-09 19:29:12][org.springframework.context.support.ClassPathXmlApplicationContext]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@382db087: startup date [Sat Feb 09 19:29:12 CST 2019]; root of context hierarchy
+[DEBUG] [2019-02-09 19:29:12][org.springframework.core.env.StandardEnvironment]Adding [systemProperties] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:12][org.springframework.core.env.StandardEnvironment]Adding [systemEnvironment] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:12][org.springframework.core.env.StandardEnvironment]Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+[INFO] [2019-02-09 19:29:12][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [applicationContext-dao.xml]
+[DEBUG] [2019-02-09 19:29:38][org.springframework.core.env.StandardEnvironment]Adding [systemProperties] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:38][org.springframework.core.env.StandardEnvironment]Adding [systemEnvironment] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:38][org.springframework.core.env.StandardEnvironment]Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+[INFO] [2019-02-09 19:29:38][org.springframework.context.support.ClassPathXmlApplicationContext]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@382db087: startup date [Sat Feb 09 19:29:38 CST 2019]; root of context hierarchy
+[DEBUG] [2019-02-09 19:29:38][org.springframework.core.env.StandardEnvironment]Adding [systemProperties] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:38][org.springframework.core.env.StandardEnvironment]Adding [systemEnvironment] PropertySource with lowest search precedence
+[DEBUG] [2019-02-09 19:29:38][org.springframework.core.env.StandardEnvironment]Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+[INFO] [2019-02-09 19:29:38][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [applicationContext-dao.xml]

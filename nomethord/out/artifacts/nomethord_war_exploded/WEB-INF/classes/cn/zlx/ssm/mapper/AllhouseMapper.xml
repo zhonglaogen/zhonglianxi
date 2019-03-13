@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zlx.ssm.mapper.AllhouseMapper" >
+  <resultMap id="BaseResultMap" type="cn.zlx.ssm.entity.Allhouse" >
+    <id column="houseid" property="houseid" jdbcType="INTEGER" />
+    <result column="tatolprice" property="tatolprice" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="deposit" property="deposit" jdbcType="INTEGER" />
+    <result column="userphone" property="userphone" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.zlx.ssm.entity.Allhouse" extends="BaseResultMap" >
+    <result column="style" property="style" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    houseid, tatolprice, location, deposit, userphone, img
+  </sql>
+  <sql id="Blob_Column_List" >
+    style
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.zlx.ssm.entity.AllhouseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from allhouse
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.zlx.ssm.entity.AllhouseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from allhouse
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from allhouse
+    where houseid = #{houseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from allhouse
+    where houseid = #{houseid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.zlx.ssm.entity.AllhouseExample" >
+    delete from allhouse
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.zlx.ssm.entity.Allhouse" >
+    insert into allhouse (houseid, tatolprice, location, 
+      deposit, userphone, img, 
+      style)
+    values (#{houseid,jdbcType=INTEGER}, #{tatolprice,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
+      #{deposit,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{style,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.zlx.ssm.entity.Allhouse" >
+    insert into allhouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseid != null" >
+        houseid,
+      </if>
+      <if test="tatolprice != null" >
+        tatolprice,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="userphone != null" >
+        userphone,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseid != null" >
+        #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="tatolprice != null" >
+        #{tatolprice,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="userphone != null" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.zlx.ssm.entity.AllhouseExample" resultType="java.lang.Integer" >
+    select count(*) from allhouse
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update allhouse
+    <set >
+      <if test="record.houseid != null" >
+        houseid = #{record.houseid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tatolprice != null" >
+        tatolprice = #{record.tatolprice,jdbcType=INTEGER},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deposit != null" >
+        deposit = #{record.deposit,jdbcType=INTEGER},
+      </if>
+      <if test="record.userphone != null" >
+        userphone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.img != null" >
+        img = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.style != null" >
+        style = #{record.style,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update allhouse
+    set houseid = #{record.houseid,jdbcType=INTEGER},
+      tatolprice = #{record.tatolprice,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      deposit = #{record.deposit,jdbcType=INTEGER},
+      userphone = #{record.userphone,jdbcType=VARCHAR},
+      img = #{record.img,jdbcType=VARCHAR},
+      style = #{record.style,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update allhouse
+    set houseid = #{record.houseid,jdbcType=INTEGER},
+      tatolprice = #{record.tatolprice,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      deposit = #{record.deposit,jdbcType=INTEGER},
+      userphone = #{record.userphone,jdbcType=VARCHAR},
+      img = #{record.img,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.zlx.ssm.entity.Allhouse" >
+    update allhouse
+    <set >
+      <if test="tatolprice != null" >
+        tatolprice = #{tatolprice,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="userphone != null" >
+        userphone = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where houseid = #{houseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.zlx.ssm.entity.Allhouse" >
+    update allhouse
+    set tatolprice = #{tatolprice,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      deposit = #{deposit,jdbcType=INTEGER},
+      userphone = #{userphone,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      style = #{style,jdbcType=LONGVARCHAR}
+    where houseid = #{houseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.zlx.ssm.entity.Allhouse" >
+    update allhouse
+    set tatolprice = #{tatolprice,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      deposit = #{deposit,jdbcType=INTEGER},
+      userphone = #{userphone,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR}
+    where houseid = #{houseid,jdbcType=INTEGER}
+  </update>
+</mapper>
